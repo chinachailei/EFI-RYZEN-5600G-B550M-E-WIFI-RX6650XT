@@ -47,11 +47,67 @@ This repository contains ONLY my complete EFI configuration based on personal ex
 - [x] iMessage & FaceTime.
 
 
-## :closed_lock_with_key: SMBIOS
+## 目录
+ - [更新日志](#更新日志)
+ - [驱动和扩展](#驱动和扩展)
+ - [如何使用](#如何使用)
+ - [BIOS设置](#BIOS设置)
+ - [适用](#适用)
+ - [睡眠信息](#睡眠信息)
+ - [PAT补丁信息](#PAT补丁信息)
+ - [Adobe系列软件修复](#Adobe系列软件修复)
+ - [虚拟化](#虚拟化)
+ - [安装向导](#安装向导)
 
-You will need to generate your own SMBIOS and configure, since is required to fully work with macOS. As per this [guide](https://dortania.github.io/OpenCore-Install-Guide/AMD/zen.html#platforminfo) you can use the following SMBIOS: iMacPro1,1 or MacPro7,1. Note that if your hardware is different for the one mentioned [here](#computer-hardware) you have tho choose an appropriate SMBIOS, more details in the [guide](https://dortania.github.io/OpenCore-Install-Guide/AMD/zen.html).
+## 驱动和扩展
+ - [[引导] OpenCore](https://github.com/acidanthera/OpenCorePkg)
+ - [[资源] Picker GUI](https://github.com/acidanthera/OcBinaryData/tree/master/Resources)
+ - [[补丁] AMD_Vanilla](https://github.com/AMD-OSX/AMD_Vanilla)
+ - [[驱动] FwRuntimeServices](https://github.com/acidanthera/OpenCorePkg)
+ - [[驱动] HfsPlus](https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlus.efi)
+ - [[驱动] OpenHfsPlus](https://github.com/acidanthera/OpenCorePkg)
+ - [[驱动] OpenRuntime](https://github.com/acidanthera/OpenCorePkg)
+ - [[驱动] OpenCanopy](https://github.com/acidanthera/OpenCorePkg)
+ - [[扩展] Lilu](https://github.com/acidanthera/Lilu)
+ - [[扩展] VirtualSMC](https://github.com/acidanthera/VirtualSMC)
+ - [[扩展] WhateverGreen](https://github.com/acidanthera/WhateverGreen)
+ - [[扩展] AppleALC 声卡驱动](https://github.com/acidanthera/AppleALC)
+ - [[扩展] AppleMCEReporterDisabler 关闭AppleMCERReport](https://github.com/AMD-OSX/AMD_Vanilla/raw/master/Extra/AppleMCEReporterDisabler.kext.zip)
+ - [[扩展] LucyRTL8125Ethernet 2.5G有线网卡驱动](https://github.com/Mieze/LucyRTL8125Ethernet)
+ - [[扩展] AMDRyzenCPUPowerManagement](https://github.com/trulyspinach/SMCAMDProcessor)
+ - [[扩展] SMCAMDProcessor](https://github.com/trulyspinach/SMCAMDProcessor)
+ - [[扩展] NVMeFix](https://github.com/acidanthera/NVMeFix)
+ - [[扩展] RestrictEvents](https://github.com/acidanthera/RestrictEvents)
+ - [[扩展] Innie](https://github.com/cdf/Innie/releases)
+ - [[SSDT] EC-USBX-DESKTOP](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/compiled/SSDT-EC-USBX-DESKTOP.aml)
+ - [[工具] GenSMBIOS](https://github.com/corpnewt/GenSMBIOS)
+ - [[工具] OpenCore在线编辑器](https://galada.gitee.io/opencoreconfiguratoronline/)
+ - [[工具] PlistEdit Pro（Mac）](https://www.macwk.com/soft/plistedit)
+ - [[工具] Hackintool](https://github.com/headkaze/Hackintool)
+ - [[工具] OpenCore Configurator（Mac）](https://www.macwk.com/soft/opencore-configurator)
+ - [[工具] gibmacOS](https://github.com/corpnewt/gibMacOS)
+ - [[工具] MaciASL](https://github.com/acidanthera/MaciASL)
+ - [[工具] OCConfigCompare](https://github.com/corpnewt/OCConfigCompare)
 
-Use [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS) to generate your own unique SMBIOS and then copy each parametter following path (recomended to follow the guide above):
+
+## 如何使用
+  1. 使用[**本指南**](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/)制作USB安装程序
+  2. 克隆存储库，并将“BOOT”和“OC”目录粘贴到您的引导驱动器“EFI”文件夹中
+  3. 下载 [**GenSMBIOS**](https://github.com/corpnewt/GenSMBIOS)以生成唯一的SMBIOS信息。运行它并选择生成SMBIOS，因为型号选择iMacPro1,1。
+  4. 使用[**ProperTree**](https://github.com/corpnewt/ProperTree)打开config.plist，然后转到PlatformInfo > Generic。将MLB（板串行）、SystemSerialNumber（串行）和SystemUUID（SmUUID）设置为生成的值。将ROM更改为去掉:的网卡MAC地址。[**如何获取MAC地址？**](https://www.wikihow.com/Find-the-MAC-Address-of-Your-Computer)
+  5. 将您的BIOS更新到最新版本，并将其设置设置为[**所需的值**](#BIOS设置)
+  6. 阅读有关某些硬件所需更改的[**信息**](#软件适用性)
+  7. 启动并安装它！
+  8. 安装后，您可以将 EFI 目录复制到磁盘的 EFI 分区 - 然后您可以无需U盘即可启动 macOS
+  9. 如果使用双系统必须开启Bootstrap,他将保护你的Opencore不被Windows的引导覆盖, 点击获取相关信息[**信息**](https://dortania.github.io/OpenCore-Post-Install/multiboot/bootstrap.html)。
+
+  如果无法正常启动,检查:
+  1. kernel > Quirks中ProvideCurrentCpuInfo是否设置为True.(必须启用,否则无法启动).
+  2. Misc -> Security -> SecureBootModel是否为Disabled
+  3. kernel > Patch 中 algrey - Force cpuid_cores_per_package 是否已经按CPU核心数进行更改,具体方法见[AMD_Vanilla
+](https://github.com/AMD-OSX/AMD_Vanilla).
+
+**本库中的SMBIOS信息已删除,必须自己生成添加并保持唯一。[生成工具](https://github.com/corpnewt/GenSMBIOS)**
 
 
 ## BIOS setup:
