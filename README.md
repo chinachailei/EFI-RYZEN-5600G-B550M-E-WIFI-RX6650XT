@@ -20,7 +20,7 @@ This repository contains ONLY my complete EFI configuration based on personal ex
 
 | **Category** | **Component**                                                                    |
 | ------------ | -------------------------------------------------------------------------------- |
-| **CPU**      | AMD Ryzen 5 5600 6-Core Processor                                       |
+| **CPU**      | AMD Ryzen 5 5600G 6-Core Processor                                       |
 | **GPU**      | 瀚铠（VASTARMOR）AMD Radeon RX 6650XT合金升级版8GB GDDR6显卡                       |
 | **RAM**      | DDR4 3600MHz 48GB                                                |
 | **CHIPSET**  | TUF Gaming B550M-E-WIFI |
