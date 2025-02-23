@@ -120,7 +120,7 @@ This repository contains ONLY my complete EFI configuration based on personal ex
 | EHCI/XHCI Hand-off | 开启 |
 | SVM | 开启 |
 | CSM | 关闭 |
-| Resizable BAR Support | 关闭 |
+| Resizable BAR Support | 开启<sup>3</sup>|
 | 安全启动 | 关闭 |
 | 串口 | 关闭 |
 | Parallel Port | 关闭 |
@@ -129,6 +129,8 @@ This repository contains ONLY my complete EFI configuration based on personal ex
 <sup>1</sup> 这里如果开启的话,**必须**在config.plist配置文件的`boot-args`项中删除  `npci=0x2000`启动参数,不过推荐主板关闭,使用参数
 
 <sup>2</sup> TPM安装阶段关闭,安装完成后可以开启,特别是win11双系统的话,不开启无法启动win11
+
+<sup>3</sup> Resizable BAR Support 如果开启以后不能正常启动就在bios关闭，然后Booter--Quirks选项--ResizeAppleGpuBars=—1
 
 **这些选项大多可能不存在于您的主板bios选项中，只需尽可能接近即可。如果您的BIOS中没有其中许多选项，请不要太担心**
 
