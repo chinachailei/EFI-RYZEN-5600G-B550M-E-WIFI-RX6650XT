@@ -22,7 +22,7 @@ This repository contains ONLY my complete EFI configuration based on personal ex
 | ------------ | -------------------------------------------------------------------------------- |
 | **CPU**      | AMD Ryzen 5 5600 6-Core Processor                                       |
 | **GPU**      | 瀚铠（VASTARMOR）AMD Radeon RX 6650XT合金升级版8GB GDDR6显卡                       |
-| **RAM**      | DDR4 3600MHz 48GB(8*2+16*2)                                                 |
+| **RAM**      | DDR4 3600MHz 48GB                                                |
 | **CHIPSET**  | TUF Gaming B550M-E-WIFI |
 | **SSD**      | 西数 Blue SN850X  2TB                                                                 |
 | **Wi-Fi/BT** | Fenvi T919（BCM94360CD）                                                                  |
