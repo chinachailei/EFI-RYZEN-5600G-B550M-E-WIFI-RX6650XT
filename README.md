@@ -3,10 +3,7 @@
 [![OpenCore](https://img.shields.io/badge/OpenCore-1.0.3-lightblue.svg)](https://github.com/acidanthera/OpenCorePkg)
 [![macOS](https://img.shields.io/badge/macOS-15.3.1-F09337.svg)](https://www.apple.com/macos/ventura)
 
-## :warning: Disclaimer
 
-
-This repository contains ONLY my complete EFI configuration based on personal experiments with my specific hardware. This is NOT a guide and should NOT be used as such. Before doing anything, please refer to the official [Dortania guide](https://dortania.github.io/getting-started/). This OpenCore configuration is optimized for my specific hardware. Use it only as a reference or if you have exactly the same or very similar hardware. I am NOT responsible for any damage caused by misuse of this configuration.
 
 <img src="assets/about-ryzentosh-15.3.1.jpg" style="width: 800px; height: auto;">
 
