@@ -1,10 +1,5 @@
 # EFI-RYZEN-5600g+B550M-E-WIFI+6650xt+T919
 
-:information_source: **The current version is fully macOS Monterey to macOS Sequoia compatible.**
-OpenCore, drivers, and kexts are always up to date! 
-
-<br/>
-
 ## Current Status
 [![OpenCore](https://img.shields.io/badge/OpenCore-1.0.3-lightblue.svg)](https://github.com/acidanthera/OpenCorePkg)
 [![macOS](https://img.shields.io/badge/macOS-15.3.1-F09337.svg)](https://www.apple.com/macos/ventura)
